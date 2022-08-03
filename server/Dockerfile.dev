@@ -1,0 +1,9 @@
+FROM node:alpine
+EXPOSE 8080
+WORKDIR /app
+COPY ./package.json ./
+RUN npm i
+COPY . .
+RUN ["npx", "prisma", "migrate", "dev", "--name", "init"]
+RUN ["npx", "prisma", "db", "seed"]
+CMD ["npm", "run", "dev"]
