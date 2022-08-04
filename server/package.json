@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node ./src/script.ts",
-    "load": "ts-node ./prisma/savedata.ts"
+    "load": "ts-node ./prisma/savedata.ts",
+    "migrate": "npx prisma migrate dev --name init",
+    "seed": "npx prisma db seed",
+    "predev": "npm run migrate && npm run seed"
   },
   "author": "",
   "license": "ISC",

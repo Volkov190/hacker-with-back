@@ -1,0 +1,19 @@
+{
+  "name": "hacker-with-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Volkov190/hacker-with-back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Volkov190/hacker-with-back/issues"
+  },
+  "homepage": "https://github.com/Volkov190/hacker-with-back#readme"
+}
