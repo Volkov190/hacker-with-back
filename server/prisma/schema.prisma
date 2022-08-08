@@ -7,23 +7,24 @@ generator client {
     provider = "prisma-client-js"
 }
 
-model Item {
-    id             Int     @id @default(autoincrement())
-    user           String?
-    time_ago       String
-    content        String
-    comments_count Int
-    time           Int
-    title          String
-    url            String?
-    points         Int?
-    type           Type    @default(comment)
-    comments       Item[]  @relation("PostComment")
-    Item           Item?   @relation("PostComment", fields: [postId], references: [id])
-    postId         Int?
+model post {
+    id       Int       @id @default(autoincrement())
+    title    String
+    user     String
+    time     Int
+    url      String
+    points   Int
+    comments comment[]
 }
 
-enum Type {
-    link
-    comment
+model comment {
+    id       Int       @id @default(autoincrement())
+    time     Int
+    user     String
+    content  String
+    post     post?     @relation(fields: [postId], references: [id])
+    postId   Int?
+    comments comment[] @relation("CommentComments")
+    parent   comment?  @relation("CommentComments", fields: [parentId], references: [id])
+    parentId Int?
 }
