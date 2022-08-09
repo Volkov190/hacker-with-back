@@ -7,8 +7,7 @@
     "dev": "ts-node ./src/script.ts",
     "load": "ts-node ./prisma/savedata.ts",
     "migrate": "npx prisma migrate dev --name init",
-    "seed": "npx prisma db seed",
-    "predev": "npm run migrate && npm run seed"
+    "seed": "npx prisma db seed"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +23,8 @@
     "@prisma/client": "^4.1.1",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "javascript-time-ago": "^2.5.7"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
