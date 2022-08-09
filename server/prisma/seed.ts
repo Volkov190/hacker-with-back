@@ -4,18 +4,19 @@ import path from "path";
 
 const prisma = new PrismaClient();
 
-const itemData: Prisma.ItemCreateInput[] = JSON.parse(
+const postData: Prisma.postCreateInput[] = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "seed.json"), "utf8")
 );
 
 async function main() {
   console.log(`Start seeding ...`);
-  for (const it of itemData) {
-    const item = await prisma.item.create({
-      data: it,
-    });
-    console.log(`Created user with id: ${item.id}`);
-  }
+  await Promise.all(
+    postData.map((data) => {
+      return prisma.post.create({
+        data,
+      });
+    })
+  );
   console.log(`Seeding finished.`);
 }
 

@@ -10,7 +10,7 @@ generator client {
 model post {
     id       Int       @id @default(autoincrement())
     title    String
-    user     String
+    user     String?
     time     Int
     url      String
     points   Int
@@ -20,7 +20,7 @@ model post {
 model comment {
     id       Int       @id @default(autoincrement())
     time     Int
-    user     String
+    user     String?
     content  String
     post     post?     @relation(fields: [postId], references: [id])
     postId   Int?
