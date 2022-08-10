@@ -1,0 +1,30 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model post {
+    id       Int       @id @default(autoincrement())
+    title    String
+    user     String?
+    time     Int
+    url      String
+    points   Int
+    comments comment[]
+}
+
+model comment {
+    id       Int       @id @default(autoincrement())
+    time     Int
+    user     String?
+    content  String
+    post     post?     @relation(fields: [postId], references: [id])
+    postId   Int?
+    comments comment[] @relation("CommentComments")
+    parent   comment?  @relation("CommentComments", fields: [parentId], references: [id])
+    parentId Int?
+}

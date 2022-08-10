@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: news
+    volumes:
+      - postgres:/var/lib/postgres/
+    restart: unless-stopped
+  prisma-app:
+    stdin_open: true
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    container_name: prisma-api
+    ports:
+      - 8080:8080
+    restart: always
+  client:
+    stdin_open: true
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    restart: always
+
+volumes:
+  postgres:
